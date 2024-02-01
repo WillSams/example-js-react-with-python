@@ -35,7 +35,8 @@ const App = () => {
           <Route exact path='/reservations/:id/edit' element={<Components.EditReservationComponent />} />
           <Route exact path='/reservations/:id' element={<Components.ShowReservationComponent />} />
           <Route exact path='/reservations/new' element={<Components.NewReservationComponent />} />
-          <Route exact path='/:componentType' element={<Components.StaticComponent />} />
+          <Route exact path='/terms' element={<Components.StaticComponent componentType={'terms'} />} />
+          <Route exact path='/privacy' element={<Components.StaticComponent componentType={'privacy'} />} />
           <Route path='*' element={<InvalidRoute />} />
         </Routes>
       </Router>

@@ -147,3 +147,44 @@ You can also acces the Ariadne GraphiQL (interactive test playground) instance a
 ## Testing
 
 Both the backend and frontend utilizes [Jest](https://jestjs.io/).  To run these tests, simply execute `npm run test:frontend` or `npm run test:backend`.
+
+## Containerization
+
+### Building the Backend Container
+
+```bash
+docker build backend/. -t acme-hotel-example-backend:latest \
+    --build-arg RESERVATION_PORT="80" \
+    --build-arg ENV="${ENV}" \
+    --build-arg IS_DEBUG="${IS_DEBUG}" \
+    --build-arg SECRET_KEY="$SECRET_KEY" \
+    --build-arg REFRESH_SECRET_KEY="$REFRESH_SECRET_KEY" \
+    --build-arg PG_URL="$PG_URL"
+
+# finally, to run a named container
+docker run --name backend-dev -p 8000:80 acme-hotel-example-backend
+```
+
+To verify the environment variables set, you can execute the following on the named container by:
+
+```bash
+CONTAINER_ID=$(docker ps -qf "name=backend-dev" -n 1)
+
+# this will display the container's environment variables in console
+docker exec $CONTAINER_ID printenv   
+```
+
+If you need to re-create the container with the same name, do **docker rm <container-name>** (i.e., backend-dev) first.
+
+### Building the Frontend Container
+
+```bash
+docker build frontend/. -t acme-hotel-example-frontend:latest \
+    --build-arg FRONTEND_PORT="80" \
+    --build-arg NODE_ENV=${NODE_ENV}
+
+# finally, to run a named container
+docker run --name frontend-dev -p 3000:80 acme-hotel-example-frontend
+```
+
+To verify, follow similar steps also explained in the above [Building the Backend Container](#building-the-backend-container) section.

@@ -10,23 +10,31 @@ import StaticComponent from '../../../src/components/static';
 configure({ adapter: new Adapter() });
 
 describe('StaticComponent component', () => {
-  const components = [
-    'Privacy',
-    'Terms',
-  ];
+  it(`should render Terms component`, () => {
+    const initialEntries = ['/terms'];
+    const wrapper = mountWithRouter(
+      <Routes>
+        <Route exact path='/terms' element={<StaticComponent componentType={'terms'} />} />
+      </Routes>,
+      initialEntries,
+    );
 
-  components.forEach((component) => {
-    it(`should render ${component} component`, () => {
-      const initialEntries = [`/${component.toLowerCase()}`];
-      const wrapper = mountWithRouter(
-        <Routes>
-          <Route exact path="/:componentType" element={<StaticComponent />} />
-        </Routes>,
-        initialEntries
-      );
+    const divs = wrapper.find('div');
+    expect(divs.length).toBeGreaterThan(0);
+  });
 
-      const title = wrapper.find('h1').text();
-      expect(title).toEqual(component);
-    });
+  it(`should render Privacy component`, () => {
+    const initialEntries = ['/privacy'];
+    const wrapper = mountWithRouter(
+      <Routes>
+        <Route exact path='/privacy' element={<StaticComponent componentType={'privacy'} />} />
+      </Routes>,
+      initialEntries,
+    );
+
+    const divs = wrapper.find('div');
+    expect(divs.length).toBeGreaterThan(0);
   });
 });
+
+

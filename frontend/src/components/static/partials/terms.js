@@ -1,8 +1,8 @@
 import React from 'react';
 
-const PrivacyComponent = () => {
+const TermsComponent = () => {
   return (
-    <div data-name="privacy-component">
+    <div data-name="terms-component">
       <div className="col-lg-12 bg-light mx-auto">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Eros donec ac odio tempor orci dapibus ultrices in. Aliquam ultrices sagittis orci a. Phasellus egestas tellus rutrum tellus. Scelerisque purus semper eget duis at tellus at urna. Aliquam ultrices sagittis orci a scelerisque purus semper. Vulputate odio ut enim blandit volutpat maecenas volutpat. Et pharetra pharetra massa massa ultricies mi quis. Vulputate mi sit amet mauris commodo quis imperdiet. Eget egestas purus viverra accumsan in. Egestas erat imperdiet sed euismod nisi porta lorem. Eros donec ac odio tempor orci dapibus ultrices. Elit pellentesque habitant morbi tristique senectus et netus et malesuada.
@@ -17,4 +17,4 @@ const PrivacyComponent = () => {
   );
 };
 
-export default PrivacyComponent;
+export default TermsComponent;

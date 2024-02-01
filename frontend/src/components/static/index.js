@@ -1,8 +1,6 @@
 import React from 'react';
 
-import { useParams } from 'react-router-dom';
-
-import { default as StaticFragment } from './fragments';
+import { default as Partial } from './partials';
 import { InvalidRoute } from '../../shared/components';
 
 import { capitalizeFirstLetter } from '../../shared/utils';
@@ -10,16 +8,15 @@ import { capitalizeFirstLetter } from '../../shared/utils';
 const renderComponent = (componentType) => {
   switch (componentType) {
     case 'Privacy':
-      return <StaticFragment.PrivacyComponent />;
+      return <Partial.PrivacyComponent />;
     case 'Terms':
-      return <StaticFragment.TermsComponent />;
+      return <Partial.TermsComponent />;
     default:
       return <InvalidRoute />;
   }
 };
 
-const StaticComponent = () => {
-  const { componentType } = useParams();
+const StaticComponent = ({ componentType }) => {
   const formattedComponentType = capitalizeFirstLetter(componentType);
 
   return (
