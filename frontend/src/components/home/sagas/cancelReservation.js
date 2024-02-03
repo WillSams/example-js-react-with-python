@@ -20,6 +20,8 @@ export function* cancelReservation({ reservationId }) {
       no: take(actionTypes.REJECT_CONFIRMATION_MODAL),
     });
 
+    let reservations = [];
+    
     if (!confirm) {
       yield put({
         type: onCancellation(actionTypes.REJECT_CONFIRMATION_MODAL),
@@ -33,13 +35,15 @@ export function* cancelReservation({ reservationId }) {
       const errors = data?.deleteReservation?.errors;
       if (errors) throw new Error(`deletereservation-saga-error:  ${JSON.stringify(errors)}`);
       else {
-        yield call(getAllReservations);
+        const response = yield call(getAllReservations);
+        reservations  = response.data.data?.getAllReservations?.reservations || [];
         yield put({
           type: actionTypes.SET_ALERT,
           alertType: 'success',
           message: 'Reservation cancelled.',
         });
       }
+      yield put({ type: onSuccessful(actionTypes.DELETE_RESERVATION), reservations });
     }
   } catch (ex) {
     const message = `Could not delete reservation.${ex}`;
