@@ -163,7 +163,8 @@ serverless.yaml
 
 **/node_modules
 
-*-lock.json
+package-lock.json
+!frontend/package-lock.json  # allow frontend package-lock.json
 
 logs/*
 
