@@ -14,11 +14,7 @@
         "test:frontend": "cd frontend && npm run test",
         "test:frontend:coverage": "cd frontend && npm run test:coverage",
         "prepare": "husky install",
-        "clean:backend": "rm -rf backend/venv backend/src/__pycache__ backend/src/*.pyc",
-        "clean:frontend": "rm -rf */node_modules */package-lock.json build *.tsbuildinfo",
-        "clean:db": "rm -rf db/node_modules db/package-lock.json",
-        "clean:root": "rm -rf node_modules package-lock.json",
-        "clean": "npm run clean:backend && npm run clean:frontend && npm run clean:db && npm run clean:root"
+        "clean": "node clean.js"
     },
     "dependencies": {
         "concurrently": "^6.5.1",
