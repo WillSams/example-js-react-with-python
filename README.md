@@ -1,6 +1,7 @@
 # Hotel Reservation React + Redux Sagas Example - JavaScript/Python
 
 **JavaScript, Vite, Reactjs, Redux Toolkit, Redux Sagas, Python, FastAPI, GraphQL, AsyncPG, Postgres**
+
 [![Application Unit Tests](https://github.com/WillSams/example-js-react-with-python/actions/workflows/pr-validate.yml/badge.svg)](https://github.com/WillSams/eexample-js-react-with-python/actions/workflows/pr-validate.yml)
 
 This example contains a frontend and backend:
@@ -80,20 +81,7 @@ The below are optional but highly recommended:
 
 ## Getting Started
 
-First, we'll need to set up our environment variables.  You can do this by either:
-
-* Manually exporting the necessary environment variables in your shell.  These are listed in the [`./envrc.example`](./envrc.example) file.
-
-or
-
-* Use optionally use **Direnv**.
-
-```bash
-cp .envrc.example .envrc
-direnv allow
-```
-
-For exporting environment variables, [Python Dotenv](https://pypi.org/project/python-dotenv/) is an option as well.  However, **Direnv** is preferred as it isn't dependent on Python therefore can be used in other use-cases.
+First, we'll need to set up our environment variables.  You can do this by either any of the methods mentioned in [/tools/ENV.md](./tools/ENV.md) but I recommend using [Direnv](https://direnv.net/).
 
 ### Install Python Packages
 
