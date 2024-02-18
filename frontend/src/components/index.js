@@ -1,13 +1,11 @@
-import HomeComponent from './home';
-import EditReservationComponent from './reservations/edit';
-import NewReservationComponent from './reservations/new';
-import ShowReservationComponent from './reservations/show';
-import { default as StaticComponent } from './static';
+import { default as HomeComponent } from './home';
+import { default as EditReservationComponent } from './reservations/edit';
+import { default as NewReservationComponent } from './reservations/new';
+import { default as ShowReservationComponent } from './reservations/show';
 
 export default {
   HomeComponent,
   EditReservationComponent,
   NewReservationComponent,
   ShowReservationComponent,
-  StaticComponent,
 };

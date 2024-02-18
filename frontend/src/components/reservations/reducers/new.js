@@ -1,4 +1,8 @@
-import { actionTypes, createComponentReducer, onSuccessful } from '../../../shared/base';
+import {
+  actionTypes,
+  createComponentReducer,
+  onSuccessful,
+} from '@/shared/base';
 
 const initialState = {
   roomIds: [],
@@ -19,7 +23,7 @@ const actionHandlers = {
 const reducer = createComponentReducer(
   actionTypes.NEW_RESERVATION_COMPONENT,
   initialState,
-  actionHandlers
+  actionHandlers,
 );
 
 export { reducer };

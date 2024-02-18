@@ -1,17 +1,23 @@
-import _ from 'lodash';
 import { useEffect } from 'react';
+import { useLocation } from 'react-router';
 
-const useLoadPage = ({ props, config }) => {
+const useLoadComponent = ({ config, props }) => {
   const loads = config?.load;
+  const location = useLocation();
 
   useEffect(() => {
-    const dispatch = props.getDispatch?.();
-    _.map(loads, load => {
-      dispatch?.(load(props));
-    });
-  }, [location?.pathname]);
+    const dispatch = props?.getDispatch?.();
+    if (loads) {
+      Object.values(loads).forEach((loadAction) => {
+        if (typeof loadAction === 'function') {
+          const actionCreator = loadAction(props);
+          dispatch?.(actionCreator);
+        }
+      });
+    }
+  }, [config?.componentName, location?.pathname]);
 
   return;
 };
 
-export default useLoadPage;
+export default useLoadComponent;

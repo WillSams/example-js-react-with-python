@@ -1,4 +1,8 @@
-import { actionTypes, createComponentReducer, onSuccessful } from '../../../shared/base';
+import {
+  actionTypes,
+  createComponentReducer,
+  onSuccessful,
+} from '@/shared/base';
 
 const initialState = {
   reservations: [],
@@ -22,15 +26,12 @@ const actionHandlers = {
       loading: false,
     };
   },
-
 };
 
 const reducer = createComponentReducer(
   actionTypes.HOME_COMPONENT,
   initialState,
-  actionHandlers
+  actionHandlers,
 );
 
 export { reducer };
-
-

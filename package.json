@@ -1,24 +1,29 @@
 {
+    "type": "module",
     "scripts": {
         "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
         "dev:db-baseline": "cd db && npm run refresh && npm run seed",
-        "dev:frontend": "cd frontend && npm run watch",
+        "dev:frontend": "cd frontend && npm run dev",
         "dev:backend": "cd backend && python src/main.py",
-        "lint": "eslint frontend --ignore-pattern 'public/' --ignore-pattern 'build/'",
-        "test:backend": "cd backend && ./run_tests.sh",
+        "format:frontend": "cd frontend && npm run format",
+        "format:backend": "cd backend && ./scripts/format.sh",
+        "lint:frontend": "cd frontend && npm run lint",
+        "lint:backend": "cd backend && ./scripts/lint.sh",
+        "test:backend": "cd backend && ./scripts/test.sh",
+        "test:backend:coverage": "cd backend && ./scripts/test-coverage.sh",
         "test:frontend": "cd frontend && npm run test",
-        "prepare": "husky install"
+        "test:frontend:coverage": "cd frontend && npm run test:coverage",
+        "prepare": "husky install",
+        "clean:backend": "rm -rf backend/venv backend/src/__pycache__ backend/src/*.pyc",
+        "clean:frontend": "rm -rf */node_modules */package-lock.json build *.tsbuildinfo",
+        "clean:db": "rm -rf db/node_modules db/package-lock.json",
+        "clean:root": "rm -rf node_modules package-lock.json",
+        "clean": "npm run clean:backend && npm run clean:frontend && npm run clean:db && npm run clean:root"
     },
     "dependencies": {
-        "concurrently": "^6.5.1"
-    },
-    "devDependencies": {
-        "eslint": "^7.26.0",
+        "concurrently": "^6.5.1",
         "husky": "^8.0.3",
-        "prettier": "^3.1.1"
-    },
-    "prettier": {
-        "singleQuote": true,
-        "trailingComma": "es5"
+        "prettier": "^3.1.1",
+        "rimraf": "^5.0.5"
     }
 }

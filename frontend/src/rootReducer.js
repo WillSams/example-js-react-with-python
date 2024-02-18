@@ -1,14 +1,12 @@
 import { combineReducers } from 'redux';
-import { connectRouter } from 'connected-react-router';
 
-import siteReducers from './components/reducer';
-import sharedReducer from './shared/sharedReducer';
+import siteReducers from '@/components/reducer';
+import sharedReducer from '@/shared/sharedReducer';
 
-const rootReducer = history =>
+const rootReducer = (routerReducer) =>
   combineReducers({
-    router: connectRouter(history),
+    router: routerReducer,
     site: siteReducers,
     shared: sharedReducer,
   });
-
 export default rootReducer;

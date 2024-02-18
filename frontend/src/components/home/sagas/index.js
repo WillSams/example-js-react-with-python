@@ -4,8 +4,5 @@ import cancelReservation from './cancelReservation';
 import getAllReservations from './getAllReservations';
 
 export default function* rootSaga() {
-  yield all([
-    cancelReservation(),
-    getAllReservations(),
-  ]);
-};
+  yield all([cancelReservation(), getAllReservations()]);
+}

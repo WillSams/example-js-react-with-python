@@ -1,60 +1,40 @@
-import _ from 'lodash';
-
-import { routerMiddleware } from 'connected-react-router';
-import { createBrowserHistory } from 'history';
-import { applyMiddleware, createStore } from 'redux';
-import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
-import { composeWithDevTools } from 'redux-devtools-extension';
+import createSagaMiddleware from 'redux-saga';
+import { configureStore } from '@reduxjs/toolkit';
+import { createReduxHistoryContext } from 'redux-first-history';
+import { createBrowserHistory } from 'history';
+
+import { actionTypes } from '@/shared/base';
 
 import rootReducer from './rootReducer';
 import rootSaga from './rootSaga';
 
-import { actionTypes, createBaseApi } from './shared/base';
-
-const history = createBrowserHistory({});
-
-const configureMiddleware = () => {
-  const logger = createLogger({
-    collapsed: true,
-    predicate: (getState, action) =>
-      process.env.NODE_ENV === 'development' &&
-      !_.includes(
-        [actionTypes.API_REQUEST, actionTypes.API_REQUEST_DONE],
-        action.type
-      ),
+const { createReduxHistory, routerMiddleware, routerReducer } =
+  createReduxHistoryContext({
+    history: createBrowserHistory(),
   });
 
-  const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
 
-  return {
-    routerMiddleware: routerMiddleware(history),
-    sagaMiddleware,
-    logger
-  };
-};
+const logger = createLogger({
+  collapsed: true,
+  predicate: (getState, action) =>
+    import.meta.env.VITE_NODE_ENV === 'development' &&
+    ![actionTypes.API_REQUEST, actionTypes.API_REQUEST_DONE].includes(
+      action.type,
+    ),
+});
 
-const configureReduxStore = (initialState = {}) => {
-  const { routerMiddleware, sagaMiddleware, logger } = configureMiddleware();
+const middlewares = [routerMiddleware, sagaMiddleware, logger];
 
-  const store = createStore(
-    rootReducer(history),
-    initialState,
-    composeWithDevTools(
-      applyMiddleware(routerMiddleware, sagaMiddleware, logger)
-    )
-  );
+// configure store will apply the thunk middleware by default
+const store = configureStore({
+  reducer: rootReducer(routerReducer),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({ thunk: false }).concat(...middlewares),
+});
 
-  return { sagaMiddleware, store };
-};
+sagaMiddleware.run(rootSaga);
+const history = createReduxHistory(store);
 
-const configureStore = (initialState = {}) => {
-  const { sagaMiddleware, store } = configureReduxStore(initialState);
-
-  createBaseApi(store);
-  sagaMiddleware.run(rootSaga);
-
-  return store;
-};
-
-export { configureStore, configureReduxStore, configureMiddleware, history };
+export { store, history };

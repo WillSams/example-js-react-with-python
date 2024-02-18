@@ -1,1 +1,5 @@
-public/js
+node_modules
+node_modules/*
+public
+build
+dist

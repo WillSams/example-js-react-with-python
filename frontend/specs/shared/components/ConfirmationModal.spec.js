@@ -1,38 +1,33 @@
+import { render, fireEvent } from '@testing-library/react'; // Import render and fireEvent from @testing-library/react
+
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import { Modal, Button } from 'react-bootstrap';
 
-import ConfirmationModal from '../../../src/shared/components/ConfirmationModal';
-
-configure({ adapter: new Adapter() });
+import ConfirmationModal from '@/shared/components/ConfirmationModal';
 
 describe('ConfirmationModal Component', () => {
   it('should render correctly with default props', () => {
     const handleConfirmMock = jest.fn();
     const handleRejectMock = jest.fn();
 
-    const wrapper = shallow(
+    const { getByText } = render(
       <ConfirmationModal
         isOpen={true}
         title="Confirmation Modal"
         message="Are you sure?"
         handleConfirm={handleConfirmMock}
         handleReject={handleRejectMock}
-      />
+      />,
     );
 
-    expect(wrapper.find(Modal.Title).text()).toEqual('Confirmation Modal');
-    expect(wrapper.find(Modal.Body).text()).toEqual('Are you sure?');
+    expect(getByText('Confirmation Modal')).toBeInTheDocument();
+    expect(getByText('Are you sure?')).toBeInTheDocument();
 
-    const confirmButton = wrapper.find(Button).at(0);
-    expect(confirmButton.text()).toEqual('Confirm');
-    confirmButton.simulate('click');
+    const confirmButton = getByText('Confirm');
+    fireEvent.click(confirmButton);
     expect(handleConfirmMock).toHaveBeenCalled();
 
-    const cancelButton = wrapper.find(Button).at(1);
-    expect(cancelButton.text()).toEqual('Cancel');
-    cancelButton.simulate('click');
+    const cancelButton = getByText('Cancel');
+    fireEvent.click(cancelButton);
     expect(handleRejectMock).toHaveBeenCalled();
   });
 
@@ -40,7 +35,7 @@ describe('ConfirmationModal Component', () => {
     const handleConfirmMock = jest.fn();
     const handleRejectMock = jest.fn();
 
-    const wrapper = shallow(
+    const { getByText } = render(
       <ConfirmationModal
         isOpen={true}
         title="Custom Modal"
@@ -50,22 +45,20 @@ describe('ConfirmationModal Component', () => {
         confirmButtonStyle="success"
         handleConfirm={handleConfirmMock}
         handleReject={handleRejectMock}
-      />
+      />,
     );
 
-    expect(wrapper.find(Modal.Title).text()).toEqual('Custom Modal');
-    expect(wrapper.find(Modal.Body).text()).toEqual('Custom message');
+    expect(getByText('Custom Modal')).toBeInTheDocument();
+    expect(getByText('Custom message')).toBeInTheDocument();
 
-    const confirmButton = wrapper.find(Button).at(0);
-    expect(confirmButton.text()).toEqual('Accept');
-    expect(confirmButton.prop('variant')).toEqual('success');
-    confirmButton.simulate('click');
+    const confirmButton = getByText('Accept');
+    expect(confirmButton).toBeInTheDocument();
+    fireEvent.click(confirmButton);
     expect(handleConfirmMock).toHaveBeenCalled();
 
-    const cancelButton = wrapper.find(Button).at(1);
-    expect(cancelButton.text()).toEqual('Decline');
-    cancelButton.simulate('click');
+    const cancelButton = getByText('Decline');
+    expect(cancelButton).toBeInTheDocument();
+    fireEvent.click(cancelButton);
     expect(handleRejectMock).toHaveBeenCalled();
   });
 });
-

@@ -1,11 +1,12 @@
 import axios from 'axios';
-import { actionTypes } from './actionTypes';
+
+import { actionTypes } from '@/shared/base';
 
 let instance = null;
 
-const createInstance = (token) => {
+const createInstance = (url, token) => {
   return axios.create({
-    baseURL: `${process.env.REACT_APP_API_URL}`,
+    baseURL: `${url}`,
     headers: {
       'Content-Type': 'application/json',
       'X-Requested-With': 'XMLHttpRequest',
@@ -20,13 +21,13 @@ const handleRequest = (config, store) => {
 };
 
 const handleRequestError = (error, store) => {
-  store.dispatch({ type: actionTypes.API_REQUEST_ERROR, error, });
+  store.dispatch({ type: actionTypes.API_REQUEST_ERROR, error });
   return Promise.reject(error);
 };
 
 const handleResponse = (response, store) => {
   store.dispatch({ type: actionTypes.API_REQUEST_DONE });
-  return response;
+  return response?.data || response;
 };
 
 const handleResponseError = (error, store) => {
@@ -34,36 +35,44 @@ const handleResponseError = (error, store) => {
   store.dispatch({ type: actionTypes.API_REQUEST_DONE });
   store.dispatch({
     type: actionTypes.API_REQUEST_ERROR,
-    error: { message, name }
+    error: { message, name },
   });
   return Promise.reject(error);
 };
 
-export const createBaseApi = (store) => {
+const getToken = async (url) => {
+  const formData = new FormData();
+  formData.append('grant_type', 'password');
+  formData.append('username', 'example-user');
+  formData.append('password', 'example-user');
+
+  const response = await axios.post(`${url}/token`, formData, {
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      accept: 'application/json',
+    },
+  });
+  return response?.data?.access_token || '';
+};
+
+export const createBaseApi = async (url, store) => {
   try {
-    // for this example, we are going to hard code the web user
-    const formData = new FormData();
-    formData.append('grant_type', 'password');
-    formData.append('username', 'example-user');
-    formData.append('password', 'example-user');
+    const tokenValue = await getToken(url);
+    instance = createInstance(url, tokenValue);
 
-    const tokenResponse = async () => await axios.post(`${process.env.REACT_APP_API_URL}/token`, formData, {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'accept': 'application/json',
-      },
-    });
-
-    const token = tokenResponse?.data?.access_token;
-    instance = createInstance(token);
-
-    instance.interceptors.request.use((config) => handleRequest(config, store), (error) => handleRequestError(error, store));
-    instance.interceptors.response.use((response) => handleResponse(response, store), (error) => handleResponseError(error, store));
+    instance.interceptors.request.use(
+      (config) => handleRequest(config, store),
+      (error) => handleRequestError(error, store),
+    );
+    instance.interceptors.response.use(
+      (response) => handleResponse(response, store),
+      (error) => handleResponseError(error, store),
+    );
 
     return instance;
   } catch (error) {
-    console.error('Error fetching token:', error);
-    throw error;
+    //console.error('Error fetching token:', error);
+    return error;
   }
 };
 

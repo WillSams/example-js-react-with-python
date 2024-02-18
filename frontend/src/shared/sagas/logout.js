@@ -1,9 +1,9 @@
-import { takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 
-import { actionTypes } from '../base';
+import { actionTypes } from '@/shared/base';
 
 export function* logout() {
-  window.location = '/logout';
+  yield put({ type: actionTypes.CLEAR_USER_DATA });
 }
 
 function* saga() {

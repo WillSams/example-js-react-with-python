@@ -1,14 +1,17 @@
 import { all } from 'redux-saga/effects';
 
-import { default as sharedSagas } from './shared/sagas';
-import { default as homeComponentSagas } from './components/home/sagas';
-import { default as reservationComponentSagas } from './components/reservations/sagas';
+import sharedSagas from '@/shared/sagas/index';
+import homeComponentSagas from '@/components/home/sagas/index';
+import reservationComponentSagas from '@/components/reservations/sagas/index';
 
 export default function* rootSaga() {
-  yield all(
-    [
+  try {
+    yield all([
       sharedSagas(),
       homeComponentSagas(),
       reservationComponentSagas(),
     ]);
-};
+  } catch (error) {
+    console.error('Error in rootSaga:', error);
+  }
+}
