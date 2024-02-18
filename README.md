@@ -1,6 +1,6 @@
 # Hotel Reservation React + Redux Sagas Example - JavaScript/Python
 
-**JavaScript, Expressjs, MVC frontend, Memcached, Python, FastAPI, GraphQL, AsyncPG, Postgres**
+**JavaScript, Vite, Reactjs, Redux Toolkit, Redux Sagas, Python, FastAPI, GraphQL, AsyncPG, Postgres**
 [![Application Unit Tests](https://github.com/WillSams/example-js-react-with-python/actions/workflows/pr-validate.yml/badge.svg)](https://github.com/WillSams/eexample-js-react-with-python/actions/workflows/pr-validate.yml)
 
 This example contains a frontend and backend:
