@@ -111,8 +111,11 @@ pip install -r requirements.txt
 Execute the following within your terminal:
 
 ```bash
-nvm use             # To eliminate any issues, install/use the version listed in .nvmrc. 
-npm i               # install the packages needed for project 
+nvm use                  # To eliminate any issues, install/use the version listed in .nvmrc. 
+npm i                    # install the packages needed for project
+cd ../frontend && npm i  # install the packages needed for the frontend
+cd ../db && npm i        # install the packages needed for database migrations
+cd ..                    # navigate back to the root of the repostiory
 ```
 
 ### Create the database
@@ -121,8 +124,7 @@ Finally, let's create and seed the databases and our Reservations and Rooms tabl
 
 ```bash
 # Create the databases and seed them
-NODE_ENV=development | ./create_db.sh && npm run refresh && npm run seed
-NODE_ENV=test | ./create_db.sh && npm run refresh && npm run seed
+NODE_ENV=development | npm run refresh && npm run seed
 ```
 
 During development, you can just execute `npm run dev:db-baseline` to refresh the database back to the original seed data.
