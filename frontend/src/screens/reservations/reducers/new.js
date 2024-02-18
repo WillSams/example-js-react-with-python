@@ -18,6 +18,14 @@ const actionHandlers = {
       loading: false,
     };
   },
+  [onSuccessful(actionTypes.CREATE_RESERVATION)]: (state, action) => {
+    const reservations = action?.response?.data || [];
+    return {
+      ...state,
+      reservations,
+      loading: false,
+    };
+  },
 };
 
 const reducer = createComponentReducer(

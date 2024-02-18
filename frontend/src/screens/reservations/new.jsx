@@ -9,18 +9,18 @@ const NewReservationComponent = ({
   createReservation = (_formData) => {},
   handleCloseAlert = () => {},
 }) => {
-  const navigate = useNavigate();
-
   const [formData, setFormData] = useState({
     room_id: '',
     checkin_date: '',
     checkout_date: '',
   });
 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     createReservation(formData);
-    navigate('/');
+    navigate('/home');
   };
 
   const handleInputChange = (e) => {
@@ -127,7 +127,6 @@ const screen = connectComponent(NewReservationComponent, {
   dispatch: (dispatch) => ({
     createReservation: (formData) =>
       dispatch({ type: actionTypes.CREATE_RESERVATION, ...formData }),
-
     handleCloseAlert: () => dispatch({ type: actionTypes.CLEAR_ALERT }),
   }),
 });

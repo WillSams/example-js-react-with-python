@@ -2,7 +2,7 @@ import { expectSaga } from 'redux-saga-test-plan';
 import { call } from 'redux-saga/effects';
 import { throwError } from 'redux-saga-test-plan/providers';
 
-import { actionTypes, onFailure } from '@/shared/base';
+import { actionTypes, onFailure, onSuccessful } from '@/shared/base';
 import { fetchQuery, createReservationMutation } from '@/shared/graphql';
 
 import newReservation from '@/screens/reservations/sagas/newReservation';
@@ -42,7 +42,6 @@ describe('newReservation Saga', () => {
         },
       },
     };
-    console.log('expectedRequestParams', JSON.stringify(expectedRequestParams));
     return scenario
       .provide([
         [
@@ -54,6 +53,12 @@ describe('newReservation Saga', () => {
         type: actionTypes.SET_ALERT,
         alertType: 'success',
         message: 'Reservation created.',
+      })
+      .put({
+        type: onSuccessful(actionTypes.CREATE_RESERVATION),
+        response: {
+          data: mockResponse.data.createReservation.reservations,
+        },
       })
       .silentRun();
   });
