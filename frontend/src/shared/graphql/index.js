@@ -1,11 +1,8 @@
 export { default as fetchQuery } from './fetchQuery';
 
 export {
-  createReservation,
-  deleteReservation,
+  createReservationMutation,
+  deleteReservationMutation,
 } from './mutations';
 
-export {
-  getExistingReservations,
-  getRoomIds,
-} from './queries';
+export { getExistingReservationsQuery, getRoomIdsQuery } from './queries';

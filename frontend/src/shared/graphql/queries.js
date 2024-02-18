@@ -1,5 +1,5 @@
-export const getExistingReservations = `
+export const getExistingReservationsQuery = `
   query { getAllReservations { reservations { id room_id checkin_date checkout_date total_charge  } } }
 `;
 
-export const getRoomIds = 'query { getAllRooms { rooms { id } } }';
+export const getRoomIdsQuery = 'query { getAllRooms { rooms { id } } }';

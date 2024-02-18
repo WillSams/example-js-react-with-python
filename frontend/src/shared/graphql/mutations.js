@@ -1,9 +1,9 @@
-export const createReservation = `
+export const createReservationMutation = `
   mutation createReservation($input: ReservationInput!) {
     createReservation(input: $input) {
       success
       errors
-      reservation {
+      reservations {
         id
         room_id
         checkin_date
@@ -13,10 +13,17 @@ export const createReservation = `
     }
   }`;
 
-export const deleteReservation = `
+export const deleteReservationMutation = `
   mutation deleteReservation($reservationId: Int!) {
     deleteReservation(reservationId: $reservationId) {
       success
       errors
+      reservations {
+        id
+        room_id
+        checkin_date
+        checkout_date
+        total_charge
+      }
     }
   }`;

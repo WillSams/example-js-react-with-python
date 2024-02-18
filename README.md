@@ -1,16 +1,16 @@
-# Acme Hotel Example - React, FastAPI, TortoiseORM
+# Hotel Reservation React + Redux Sagas Example - JavaScript/Python
+
+**JavaScript, Expressjs, MVC frontend, Memcached, Python, FastAPI, GraphQL, AsyncPG, Postgres**
+[![Application Unit Tests](https://github.com/WillSams/example-js-react-with-python/actions/workflows/pr-validate.yml/badge.svg)](https://github.com/WillSams/eexample-js-react-with-python/actions/workflows/pr-validate.yml)
 
 This example contains a frontend and backend:
 
 - The frontend is a [React](https://react.dev) application using [Bootstrap4](https://getbootstrap.com/docs/4.6/getting-started/introduction/) for view designs.
 - The backend is a [GraphQL API](https://graphql.org) providing the ability to create, delete, and list reservatios plus available rooms for a given date range.
 
-Other versions of this solution:
-- [Next.js-FastAPI-TortoiseORM](https://github.com/WillSams/acme-hotel-nextjs-fastapi-tortoiseorm), SEO-friendly solution utilizing TailwindCSS instead of Bootstrap4.
-- [Express-FastAPI-SqlAlchemy](https://github.com/WillSams/acme-hotel-express-fastapi-sqlalchemy), utilizing an MVC architecture and [Pug](https://pugjs.org/api/getting-started.html) templating.
+React [Typescript](https://github.com/WillSams/example-ts-react-with-python) and [Express MVC](https://github.com/WillSams/example-mvc-expressjs-with-python) versions of this same idea are available.
 
-Additional solution of interest:
-- [Vite-React+SWC-SSR](https://github.com/WillSams/acme-hockey-association-vite-react-ssr-dynamodb), lighting fast example of a youth ice hockey association using [AWS DynamoDB](https://aws.amazon.com/dynamodb/) instead of Postgres.
+An [abandoned](https://github.com/WillSams/example-mvc-expressjs-with-python/tree/abandoned) branch for the previous version of this repository includes the usage of TortoiseORM.
 
 **Context**:
 

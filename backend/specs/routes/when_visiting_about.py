@@ -1,5 +1,6 @@
-import pytest
 import json
+
+import pytest
 
 from routes import create_app
 from routes.about import AboutRoute

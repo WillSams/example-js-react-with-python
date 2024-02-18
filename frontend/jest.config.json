@@ -1,0 +1,19 @@
+{
+  "rootDir": ".",
+  "verbose": true,
+  "clearMocks": true,
+  "testEnvironment": "jest-environment-jsdom",
+  "transform": {
+    "\\.(js|jsx)?$": "babel-jest"
+  },
+  "transformIgnorePatterns": ["<rootDir>/node_modules/"],
+  "coverageProvider": "v8",
+  "collectCoverageFrom": ["src/**/*.{js,jsx}"],
+  "coveragePathIgnorePatterns": ["src/setupTests.js"],
+  "setupFilesAfterEnv": ["<rootDir>/src/setupTests.js"],
+  "testMatch": ["<rootDir>/specs/**/*.spec.{js,jsx}"],
+  "moduleNameMapper": {
+    ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2|svg)$": "identity-obj-proxy",
+    "^@/(.*)$": "<rootDir>/src/$1"
+  }
+}

@@ -9,7 +9,7 @@ export function* handleApiRequestUnauthorized() {
 function* handleApiRequestUnauthorizedSaga() {
   yield takeLatest(
     actionTypes.API_REQUEST_UNAUTHORIZED,
-    handleApiRequestUnauthorized
+    handleApiRequestUnauthorized,
   );
 }
 

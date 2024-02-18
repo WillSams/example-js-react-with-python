@@ -2,8 +2,7 @@ import os
 import sys
 
 env_value = os.getenv("ENV")
-node_evn = os.getenv("NODE_ENV")
-if env_value != "test" and node_evn != "test":
+if env_value != "test":
     raise ValueError(
         """"Environment variable 'ENV' must
                      be set to 'test' for testing."""

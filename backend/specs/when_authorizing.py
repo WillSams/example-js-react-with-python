@@ -1,10 +1,10 @@
-import pytest
-from datetime import datetime, timedelta
+from datetime import timedelta
 
+import pytest
 from jose import jwt
 
-from settings import ALGORITHM, REFRESH_SECRET_KEY, SECRET_KEY
 from auth import create_access_token, create_refresh_token
+from settings import ALGORITHM, REFRESH_SECRET_KEY, SECRET_KEY
 
 
 class DescribeAuthorization:

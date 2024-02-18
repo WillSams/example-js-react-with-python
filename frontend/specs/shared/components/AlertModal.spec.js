@@ -1,38 +1,47 @@
+import { render, fireEvent } from '@testing-library/react';
+
 import React from 'react';
-import { configure, shallow } from 'enzyme';
-import Adapter from '@wojtekmaj/enzyme-adapter-react-17';
-import { Modal, Button } from 'react-bootstrap'; // Import Modal and Button
 
-import { AlertModal } from '../../../src/shared/components';
+import { AlertModal } from '@/shared/components';
 
-configure({ adapter: new Adapter() });
+jest.mock('@/shared/utils', () => ({
+  getApiUrl: () => `${process.env.RESERVATION_API}`,
+}));
 
 describe('AlertModal Component', () => {
   it('should render correctly with success type', () => {
     const onCloseMock = jest.fn();
-    const wrapper = shallow(
-      <AlertModal type="success" message="Success message" onClose={onCloseMock} />
+    const { getByText } = render(
+      <AlertModal
+        type="success"
+        message="Success message"
+        onClose={onCloseMock}
+      />,
     );
 
-    expect(wrapper.find(Modal.Title).text()).toEqual('Success');
-    expect(wrapper.find(Modal.Body).text()).toEqual('Success message');
+    expect(getByText('Success')).toBeInTheDocument();
+    expect(getByText('Success message')).toBeInTheDocument();
 
-    const closeButton = wrapper.find(Button);
-    closeButton.simulate('click');
+    const closeButton = getByText('Close');
+    fireEvent.click(closeButton);
     expect(onCloseMock).toHaveBeenCalled();
   });
 
   it('should render correctly with danger type', () => {
     const onCloseMock = jest.fn();
-    const wrapper = shallow(
-      <AlertModal type="danger" message="Error message" onClose={onCloseMock} />
+    const { getByText } = render(
+      <AlertModal
+        type="danger"
+        message="Error message"
+        onClose={onCloseMock}
+      />,
     );
 
-    expect(wrapper.find(Modal.Title).text()).toEqual('Error');
-    expect(wrapper.find(Modal.Body).text()).toEqual('Error message');
+    expect(getByText('Error')).toBeInTheDocument();
+    expect(getByText('Error message')).toBeInTheDocument();
 
-    const closeButton = wrapper.find(Button);
-    closeButton.simulate('click');
+    const closeButton = getByText('Close');
+    fireEvent.click(closeButton);
     expect(onCloseMock).toHaveBeenCalled();
   });
 });

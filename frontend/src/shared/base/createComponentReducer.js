@@ -1,4 +1,8 @@
-export const createComponentReducer = (componentName, initialState, actionHandlers) => {
+export const createComponentReducer = (
+  componentName,
+  initialState,
+  actionHandlers,
+) => {
   actionHandlers[`LOAD_${componentName}`] = (state, action) => ({
     ...state,
     loading: true,
@@ -19,7 +23,7 @@ export const createComponentReducer = (componentName, initialState, actionHandle
       ...initialState,
       componentLoading: true,
     },
-    action
+    action,
   ) => {
     const effect = actionHandlers[action.type];
 

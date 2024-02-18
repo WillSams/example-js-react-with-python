@@ -1,8 +1,4 @@
 export ENV=test
-export NODE_ENV=$ENV 
-export PG_NAME=hotel_$ENV
-export PG_PORT=8081
-export PG_URL=${PG_CLIENT}://${PG_USER}:${PG_PASSWD}@${PG_HOST}:${PG_PORT}/${PG_NAME}
 export PYTHONDONTWRITEBYTECODE=1
 
 PG_NAME=hotel_test ./../db/create_db.sh
