@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import React from 'react';
 
 import { initialState as defaultShared } from '@/shared/sharedReducer';
-import HomeComponent from '@/components/home';
+import HomeComponent from '@/screens/home';
 
 import { render } from '../../reactTestHelpers';
 

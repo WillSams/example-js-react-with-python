@@ -1,6 +1,6 @@
 import { actionTypes, onSuccessful } from '@/shared/base';
 
-import { newReducer } from '@/components/reservations/reducers';
+import { newReducer } from '@/screens/reservations/reducers';
 
 describe('reservations/reducers/newReducer tests', () => {
   beforeEach(() => {

@@ -5,7 +5,7 @@ import { throwError } from 'redux-saga-test-plan/providers';
 import { actionTypes, onFailure } from '@/shared/base';
 import { fetchQuery, createReservationMutation } from '@/shared/graphql';
 
-import newReservation from '@/components/reservations/sagas/newReservation';
+import newReservation from '@/screens/reservations/sagas/newReservation';
 
 describe('newReservation Saga', () => {
   let scenario;

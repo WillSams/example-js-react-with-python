@@ -3,7 +3,7 @@ import { screen } from '@testing-library/react';
 import React from 'react';
 
 import { initialState as defaultShared } from '@/shared/sharedReducer';
-import NewReservationComponent from '@/components/reservations/new';
+import NewReservationComponent from '@/screens/reservations/new';
 
 import { render } from '../../reactTestHelpers';
 

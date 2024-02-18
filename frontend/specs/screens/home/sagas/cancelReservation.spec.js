@@ -12,7 +12,7 @@ import { fetchQuery, deleteReservationMutation } from '@/shared/graphql';
 
 import cancelReservation, {
   confirmation,
-} from '@/components/home/sagas/cancelReservation';
+} from '@/screens/home/sagas/cancelReservation';
 
 describe('cancelReservation Saga', () => {
   let scenario;

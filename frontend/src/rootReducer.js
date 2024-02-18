@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import siteReducers from '@/components/reducer';
+import siteReducers from '@/screens/reducer';
 import sharedReducer from '@/shared/sharedReducer';
 
 const rootReducer = (routerReducer) =>

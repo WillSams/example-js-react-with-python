@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
 
 import InvalidRoute from '@/shared/components/InvalidRoute';
-import { default as Components } from '@/components';
+import { default as Components } from '@/screens';
 
 const App = () => {
   return (

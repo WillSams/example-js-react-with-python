@@ -165,4 +165,6 @@ serverless.yaml
 
 *-lock.json
 
-logs/
+logs/*
+
+frontend/coverage/

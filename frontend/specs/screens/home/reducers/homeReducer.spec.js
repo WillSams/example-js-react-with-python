@@ -1,5 +1,5 @@
 import { actionTypes, onSuccessful } from '@/shared/base';
-import { homeReducer } from '@/components/home/reducers';
+import { homeReducer } from '@/screens/home/reducers';
 
 describe('home/reducers/homeReducer tests', () => {
   beforeEach(() => {

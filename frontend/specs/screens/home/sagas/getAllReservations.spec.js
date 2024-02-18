@@ -5,7 +5,7 @@ import { throwError } from 'redux-saga-test-plan/providers';
 import { actionTypes, onFailure, onSuccessful } from '@/shared/base';
 import { fetchQuery, getExistingReservationsQuery } from '@/shared/graphql';
 
-import getAllReservations from '@/components/home/sagas/getAllReservations';
+import getAllReservations from '@/screens/home/sagas/getAllReservations';
 
 describe('getAllReservations Saga', () => {
   let scenario;
