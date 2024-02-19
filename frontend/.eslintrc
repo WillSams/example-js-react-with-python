@@ -6,13 +6,13 @@
   ],
   "plugins": [ "eslint-comments", "react", "react-refresh" ],
   "root": true,
-  "env": { browser: true, es2020: true },
+  "env": { "browser": true, "es2020": true },
   "parserOptions": {
     "sourceType": "module",
     "ecmaVersion": "latest"
   },
   "ignorePatterns": ["build","specs",".eslintrc"],
-  "settings": { "react": { version: "18.2" } },
+  "settings": { "react": { "version": "18.2" } },
   "rules": {
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
@@ -30,5 +30,5 @@
     "no-case-declarations": "off",
     "no-console": "error",
     "no-debugger": "error"
-  },
+  }
 }
