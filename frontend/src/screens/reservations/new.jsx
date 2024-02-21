@@ -45,13 +45,13 @@ const NewReservationComponent = ({
         </div>
       </div>
       <div data-name="new-reservation-component">
-        <div className="col-lg-12 bg-light full-area-content">
+        <div className="col-lg-12 bg-light full-area-content container">
           <h2>Create a New Reservation</h2>
           <form onSubmit={(e) => handleSubmit(e)}>
-            <table>
+            <table className="container">
               <tbody>
                 <tr>
-                  <td>
+                  <td className="pull-right">
                     <label htmlFor="room_id">Room ID</label>
                   </td>
                   <td>
@@ -72,7 +72,7 @@ const NewReservationComponent = ({
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className="pull-right">
                     <label htmlFor="checkin_date">Check-in Date</label>
                   </td>
                   <td>
@@ -87,7 +87,7 @@ const NewReservationComponent = ({
                   </td>
                 </tr>
                 <tr>
-                  <td>
+                  <td className="pull-right">
                     <label htmlFor="checkout_date">Check-out Date</label>
                   </td>
                   <td>
@@ -103,6 +103,8 @@ const NewReservationComponent = ({
                 </tr>
               </tbody>
             </table>
+            <br />
+            <br />
             <button type="submit">Create Reservation</button>
           </form>
         </div>
