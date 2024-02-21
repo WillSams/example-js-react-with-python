@@ -10,7 +10,7 @@ const AboutTab = () => {
           reservations and to create new ones.
         </p>
 
-        <div className="container w-1000 d-flex flex-column">
+        <div className="container center-block">
           <img
             width={1000}
             height={750}
