@@ -223,6 +223,8 @@ body footer {
   padding: 15px;
   margin: auto auto;
   text-align: center;
+  position: fixed;
+  bottom: 0;
 }
 @media print, screen and (min-width: 37.5em) {
   .full-area-content {
