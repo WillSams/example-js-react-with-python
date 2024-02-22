@@ -12,17 +12,7 @@ services:
     volumes:
       - hotel-db-data:/var/lib/postgresql/data
     command: ["postgres", "-c", "listen_addresses=*"]
-  cache:
-    image: memcached:latest
-    ports:
-      - "${CACHE_PORT}:11211"
-    command:
-      - '--memory-limit=1024'
-    volumes: 
-      - cache-data:/var/lib/cache/data
 volumes:
   hotel-db-data:
-  inventory-db-data:
-  cache-data:
 networks:
   hotel-network:
