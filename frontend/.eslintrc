@@ -4,7 +4,7 @@
     "plugin:eslint-comments/recommended",
     "plugin:react/jsx-runtime"
   ],
-  "plugins": [ "eslint-comments", "react", "react-refresh" ],
+  "plugins": [ "eslint-comments", "react" ],
   "root": true,
   "env": { "browser": true, "es2020": true },
   "parserOptions": {
@@ -17,10 +17,6 @@
     "react/jsx-uses-react": "error",
     "react/jsx-uses-vars": "error",
     "react/jsx-no-target-blank": "off",
-    "react-refresh/only-export-components": [
-      "warn",
-      { "allowConstantExport": true },
-    ],
     "explicit-function-return-type": "off",
     "strict-boolean-expressions": "off",
     "no-floating-promises": "off",

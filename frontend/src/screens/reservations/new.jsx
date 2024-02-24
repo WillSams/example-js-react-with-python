@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { connectComponent, actionTypes } from '@/shared/base';
+import { connectComponent, actionCreators } from '@/shared/base';
 import AlertModal from '@/shared/components/AlertModal';
 
 const NewReservationComponent = ({
@@ -121,15 +121,15 @@ const NewReservationComponent = ({
 };
 
 const screen = connectComponent(NewReservationComponent, {
-  componentName: actionTypes.NEW_RESERVATION_COMPONENT,
+  componentName: actionCreators.NEW_RESERVATION_COMPONENT,
   state: (state) => state?.site?.newReservations?.roomIds,
   load: {
-    roomIds: () => ({ type: actionTypes.GET_ROOM_IDS }),
+    roomIds: () => ({ type: actionCreators.GET_ROOM_IDS }),
   },
   dispatch: (dispatch) => ({
     createReservation: (formData) =>
-      dispatch({ type: actionTypes.CREATE_RESERVATION, ...formData }),
-    handleCloseAlert: () => dispatch({ type: actionTypes.CLEAR_ALERT }),
+      dispatch({ type: actionCreators.CREATE_RESERVATION, ...formData }),
+    handleCloseAlert: () => dispatch({ type: actionCreators.CLEAR_ALERT }),
   }),
 });
 

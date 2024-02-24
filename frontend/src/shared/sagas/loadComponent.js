@@ -1,6 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
 
-import { actionTypes } from '../base';
+import { actionCreators } from '../base';
 
 export function* loadComponent({ componentName }) {
   yield put({
@@ -9,7 +9,7 @@ export function* loadComponent({ componentName }) {
 }
 
 function* saga() {
-  yield takeLatest(actionTypes.LOAD_COMPONENT, loadComponent);
+  yield takeLatest(actionCreators.LOAD_COMPONENT, loadComponent);
 }
 
 export default saga;

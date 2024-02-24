@@ -1,4 +1,4 @@
-import { actionTypes, onSuccessful } from '@/shared/base';
+import { actionCreators, onSuccessful } from '@/shared/base';
 import { homeReducer } from '@/screens/home/reducers';
 
 describe('home/reducers/homeReducer tests', () => {
@@ -19,7 +19,7 @@ describe('home/reducers/homeReducer tests', () => {
     const initialState = { loading: true, reservations: [] };
 
     const action = {
-      type: onSuccessful(actionTypes.GET_RESERVATIONS),
+      type: onSuccessful(actionCreators.GET_RESERVATIONS),
       response,
     };
 

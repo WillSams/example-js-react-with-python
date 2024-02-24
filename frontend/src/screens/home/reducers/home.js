@@ -1,5 +1,5 @@
 import {
-  actionTypes,
+  actionCreators,
   createComponentReducer,
   onSuccessful,
 } from '@/shared/base';
@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const actionHandlers = {
-  [onSuccessful(actionTypes.GET_RESERVATIONS)]: (state, action) => {
+  [onSuccessful(actionCreators.GET_RESERVATIONS)]: (state, action) => {
     const reservations = action?.response?.data || [];
     return {
       ...state,
@@ -18,7 +18,7 @@ const actionHandlers = {
       loading: false,
     };
   },
-  [onSuccessful(actionTypes.DELETE_RESERVATION)]: (state, action) => {
+  [onSuccessful(actionCreators.DELETE_RESERVATION)]: (state, action) => {
     const reservations = action?.response?.data || [];
     return {
       ...state,
@@ -29,7 +29,7 @@ const actionHandlers = {
 };
 
 const reducer = createComponentReducer(
-  actionTypes.HOME_COMPONENT,
+  actionCreators.HOME_COMPONENT,
   initialState,
   actionHandlers,
 );
