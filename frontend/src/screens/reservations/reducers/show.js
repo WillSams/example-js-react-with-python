@@ -1,4 +1,4 @@
-import { actionTypes, createComponentReducer } from '@/shared/base';
+import { actionCreators, createComponentReducer } from '@/shared/base';
 
 const initialState = {
   loading: true,
@@ -7,7 +7,7 @@ const initialState = {
 const actionHandlers = {};
 
 const reducer = createComponentReducer(
-  actionTypes.SHOW_RESERVATION_COMPONENT,
+  actionCreators.SHOW_RESERVATION_COMPONENT,
   initialState,
   actionHandlers,
 );

@@ -1,4 +1,4 @@
-import { actionTypes, onSuccessful } from '@/shared/base';
+import { actionCreators, onSuccessful } from '@/shared/base';
 
 import { newReducer } from '@/screens/reservations/reducers';
 
@@ -17,7 +17,7 @@ describe('reservations/reducers/newReducer tests', () => {
     const initialState = { loading: true, roomIds: [] };
 
     const action = {
-      type: onSuccessful(actionTypes.GET_ROOM_IDS),
+      type: onSuccessful(actionCreators.GET_ROOM_IDS),
       response,
     };
 

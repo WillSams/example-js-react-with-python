@@ -2,7 +2,7 @@ import React from 'react';
 import { Col, Nav, Row, Tab } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
-import { actionTypes, connectComponent } from '@/shared/base';
+import { actionCreators, connectComponent } from '@/shared/base';
 import { AlertModal, ConfirmationModal } from '@/shared/components';
 
 import HomeTabs from './tabs';
@@ -81,32 +81,32 @@ const HomeComponent = ({
 };
 
 const screen = connectComponent(HomeComponent, {
-  componentName: actionTypes.HOME_COMPONENT,
+  componentName: actionCreators.HOME_COMPONENT,
   state: (state) => state?.site?.home?.reservations ?? [],
   load: {
-    reservations: () => ({ type: actionTypes.GET_RESERVATIONS }),
+    reservations: () => ({ type: actionCreators.GET_RESERVATIONS }),
   },
   dispatch: (dispatch) => ({
-    handleCloseAlert: () => dispatch({ type: actionTypes.CLEAR_ALERT }),
+    handleCloseAlert: () => dispatch({ type: actionCreators.CLEAR_ALERT }),
     handleConfirmAction: () =>
-      dispatch({ type: actionTypes.CONFIRM_CONFIRMATION_MODAL }),
+      dispatch({ type: actionCreators.CONFIRM_CONFIRMATION_MODAL }),
     handleRejectAction: () =>
-      dispatch({ type: actionTypes.REJECT_CONFIRMATION_MODAL }),
+      dispatch({ type: actionCreators.REJECT_CONFIRMATION_MODAL }),
     cancelReservation: (id) =>
       dispatch({
-        type: actionTypes.DELETE_RESERVATION,
+        type: actionCreators.DELETE_RESERVATION,
         reservationId: parseInt(id),
       }),
     editReservation: (id) =>
       dispatch({
-        type: actionTypes.EDIT_RESERVATION_COMPONENT,
+        type: actionCreators.EDIT_RESERVATION_COMPONENT,
         reservationId: parseInt(id),
       }),
     newReservation: () => {
-      dispatch({ type: actionTypes.NEW_RESERVATION_COMPONENT });
+      dispatch({ type: actionCreators.NEW_RESERVATION_COMPONENT });
     },
     showReservation: (id) =>
-      dispatch({ type: actionTypes.SHOW_RESERVATION_COMPONENT, id }),
+      dispatch({ type: actionCreators.SHOW_RESERVATION_COMPONENT, id }),
   }),
 });
 
