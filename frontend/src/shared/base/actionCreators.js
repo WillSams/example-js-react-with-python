@@ -118,4 +118,5 @@ export const actionCreators = {
     'site/reservations/show/UNLOAD_SHOW_RESERVATION_COMPONENT_SUCCESS',
 
   SHOW_RESERVATION_COMPONENT: 'site/reservations/show/RESERVATION',
+  GET_RESERVATION: 'site/reservations/show/GET_RESERVATION',
 };
