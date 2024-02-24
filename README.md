@@ -15,12 +15,12 @@ An [abandoned](https://github.com/WillSams/example-mvc-expressjs-with-python/tre
 
 **Context**:
 
-* When a room is reserved, it cannot be reserved by another guest on overlapping dates.
-* Whenever there are multiple available rooms for a request, the room with the lower final price is assigned.
-* Whenever a request is made for a single room, a double bed room may be assigned (if no single is available?).
-* Smokers are not placed in non-smoking rooms.
-* Non-smokers are not placed in allowed smoking rooms.
-* Final price for reservations are determined by daily price * num of days requested, plus the cleaning fee.
+- When a room is reserved, it cannot be reserved by another guest on overlapping dates.
+- Whenever there are multiple available rooms for a request, the room with the lower final price is assigned.
+- Whenever a request is made for a single room, a double bed room may be assigned (if no single is available?).
+- Smokers are not placed in non-smoking rooms.
+- Non-smokers are not placed in allowed smoking rooms.
+- Final price for reservations are determined by daily price * num of days requested, plus the cleaning fee.
 
 **Web UI Usage**:
 
@@ -64,19 +64,19 @@ curl http://localhost:$RESERVATION_PORT/development/graphql \
 
 Navigate to [http://localhost:$RESERVATION_PORT/docs](http://localhost:$RESERVATION_PORT/docs).
 
-![text](./frontend/src/public/img/openapi_example.png)
+![backend/docs](./frontend/public/img/openapi_example.png)
 
 ## Pre-requisites
 
 To run the service, you will need to install the following tools.
 
-* [NodeJS](https://nodejs.org/en/)
-* [Docker](https://www.docker.com/)
+- [NodeJS](https://nodejs.org/en/)
+- [Docker](https://www.docker.com/)
 
 The below are optional but highly recommended:
 
-* [nvm](https://github.com/nvm-sh/nvm) - Used to manage NodeJS versions.
-* [Direnv](https://direnv.net/) - Used to manage environment variables.
+- [nvm](https://github.com/nvm-sh/nvm) - Used to manage NodeJS versions.
+- [Direnv](https://direnv.net/) - Used to manage environment variables.
 - Install [direnv](https://direnv.net) for persisting environment variables needed for development.
 
 ## Getting Started
