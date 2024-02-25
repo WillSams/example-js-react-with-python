@@ -1,4 +1,4 @@
-import { actionCreators, onSuccessful } from './base';
+import { actionTypes, onSuccessful } from './base';
 
 export const initialState = {
   requestInProgress: false,
@@ -19,7 +19,7 @@ export const initialState = {
 export default (state = initialState, action) => {
   switch (action.type) {
     // api requests
-    case actionCreators.API_REQUEST:
+    case actionTypes.API_REQUEST:
       const incCount = state.count + 1;
 
       return {
@@ -27,8 +27,8 @@ export default (state = initialState, action) => {
         count: incCount,
         requestInProgress: incCount > 0,
       };
-    case actionCreators.API_REQUEST_DONE:
-    case actionCreators.API_REQUEST_ERROR:
+    case actionTypes.API_REQUEST_DONE:
+    case actionTypes.API_REQUEST_ERROR:
       const decCount = state.count - 1;
 
       return {
@@ -38,20 +38,20 @@ export default (state = initialState, action) => {
       };
 
     // alerts
-    case actionCreators.SET_ALERT:
+    case actionTypes.SET_ALERT:
       return {
         ...state,
         alertMessage: action.message,
         alertType: action.alertType,
       };
-    case actionCreators.CLEAR_ALERT:
+    case actionTypes.CLEAR_ALERT:
       return {
         ...state,
         alertMessage: null,
         alertType: null,
       };
     // confirmation
-    case actionCreators.OPEN_CONFIRMATION_MODAL:
+    case actionTypes.OPEN_CONFIRMATION_MODAL:
       return {
         ...state,
         confirmationModalIsOpen: true,
@@ -61,9 +61,9 @@ export default (state = initialState, action) => {
         confirmationModalCancellationText: action.cancellationText,
         confirmationModalButtonStyle: action.buttonStyle,
       };
-    case actionCreators.CLOSE_CONFIRMATION_MODAL:
-    case actionCreators.CONFIRM_CONFIRMATION_MODAL:
-    case actionCreators.REJECT_CONFIRMATION_MODAL:
+    case actionTypes.CLOSE_CONFIRMATION_MODAL:
+    case actionTypes.CONFIRM_CONFIRMATION_MODAL:
+    case actionTypes.REJECT_CONFIRMATION_MODAL:
       return {
         ...state,
         confirmationModalIsOpen: false,
@@ -75,19 +75,19 @@ export default (state = initialState, action) => {
       };
 
     // common component actions
-    case actionCreators.LOAD_COMPONENT:
+    case actionTypes.LOAD_COMPONENT:
       return {
         ...state,
         componentLoading: true,
         componentNotFound: false,
       };
-    case actionCreators.COMPONENT_NOT_FOUND:
+    case actionTypes.COMPONENT_NOT_FOUND:
       return {
         ...state,
         componentLoading: false,
         componentNotFound: true,
       };
-    case onSuccessful(actionCreators.LOAD_COMPONENT):
+    case onSuccessful(actionTypes.LOAD_COMPONENT):
       return {
         ...state,
         componentLoading: false,

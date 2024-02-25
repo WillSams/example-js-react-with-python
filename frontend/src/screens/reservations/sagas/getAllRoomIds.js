@@ -1,6 +1,6 @@
 import { call, takeLatest, put } from 'redux-saga/effects';
 
-import { actionCreators, onFailure, onSuccessful } from '@/shared/base';
+import { actionTypes, onFailure, onSuccessful } from '@/shared/base';
 import { fetchQuery, getRoomIdsQuery } from '@/shared/graphql';
 
 export function* getAllRoomIds() {
@@ -19,7 +19,7 @@ export function* getAllRoomIds() {
       const roomIds = rooms?.map((room) => room.id);
 
       yield put({
-        type: onSuccessful(actionCreators.GET_ROOM_IDS),
+        type: onSuccessful(actionTypes.GET_ROOM_IDS),
         response: {
           data: roomIds,
         },
@@ -28,12 +28,12 @@ export function* getAllRoomIds() {
   } catch (ex) {
     const message = `Could not retrieve room identifiers:  ${ex}`;
     yield put({
-      type: onFailure(actionCreators.GET_ROOM_IDS),
+      type: onFailure(actionTypes.GET_ROOM_IDS),
       alertType: 'danger',
       message,
     });
     yield put({
-      type: actionCreators.SET_ALERT,
+      type: actionTypes.SET_ALERT,
       alertType: 'danger',
       message,
     });
@@ -41,7 +41,7 @@ export function* getAllRoomIds() {
 }
 
 function* saga() {
-  yield takeLatest(actionCreators.GET_ROOM_IDS, getAllRoomIds);
+  yield takeLatest(actionTypes.GET_ROOM_IDS, getAllRoomIds);
 }
 
 export default saga;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { actionCreators } from '@/shared/base';
+import { actionTypes } from '@/shared/base';
 
 let instance = null;
 
@@ -16,25 +16,25 @@ const createInstance = (url, token) => {
 };
 
 const handleRequest = (config, store) => {
-  store.dispatch({ type: actionCreators.API_REQUEST });
+  store.dispatch({ type: actionTypes.API_REQUEST });
   return config;
 };
 
 const handleRequestError = (error, store) => {
-  store.dispatch({ type: actionCreators.API_REQUEST_ERROR, error });
+  store.dispatch({ type: actionTypes.API_REQUEST_ERROR, error });
   return Promise.reject(error);
 };
 
 const handleResponse = (response, store) => {
-  store.dispatch({ type: actionCreators.API_REQUEST_DONE });
+  store.dispatch({ type: actionTypes.API_REQUEST_DONE });
   return response?.data || response;
 };
 
 const handleResponseError = (error, store) => {
   const { message, name } = error;
-  store.dispatch({ type: actionCreators.API_REQUEST_DONE });
+  store.dispatch({ type: actionTypes.API_REQUEST_DONE });
   store.dispatch({
-    type: actionCreators.API_REQUEST_ERROR,
+    type: actionTypes.API_REQUEST_ERROR,
     error: { message, name },
   });
   return Promise.reject(error);

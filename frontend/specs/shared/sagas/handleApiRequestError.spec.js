@@ -3,7 +3,7 @@ import { takeLatest } from 'redux-saga/effects';
 
 import { default as sharedSagas } from '../../../src/shared/sagas';
 import { handleApiRequestError } from '../../../src/shared/sagas/handleApiRequestError';
-import { actionCreators, } from '../../../src/shared/base';
+import { actionTypes, } from '../../../src/shared/base';
 
 describe('handleApiRequestError Saga', () => {
   it('should dispatch SET_ALERT action with error message', () => {
@@ -14,7 +14,7 @@ describe('handleApiRequestError Saga', () => {
 
     return expectSaga(handleApiRequestError, { error })
       .put({
-        type: actionCreators.SET_ALERT,
+        type: actionTypes.SET_ALERT,
         message: `Oops! Something went wrong. ${error.name}:  ${error.message}`,
         alertType: 'danger',
       })
@@ -29,7 +29,7 @@ describe('handleApiRequestError Saga', () => {
 
     return expectSaga(sharedSagas)
       .provide([
-        [takeLatest(actionCreators.API_REQUEST_ERROR, handleApiRequestError), error],
+        [takeLatest(actionTypes.API_REQUEST_ERROR, handleApiRequestError), error],
       ])
       .silentRun();
   });
