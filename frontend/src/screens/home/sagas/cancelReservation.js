@@ -1,7 +1,7 @@
 import { call, take, takeLatest, put, race } from 'redux-saga/effects';
 
 import {
-  actionCreators,
+  actionTypes,
   onCancellation,
   onFailure,
   onSuccessful,
@@ -10,7 +10,7 @@ import { fetchQuery, deleteReservationMutation } from '@/shared/graphql';
 
 export function* confirmation(reservationId) {
   yield put({
-    type: actionCreators.OPEN_CONFIRMATION_MODAL,
+    type: actionTypes.OPEN_CONFIRMATION_MODAL,
     title: 'Are you sure you?',
     message: `You will not be able to  reverse cancellation (id: ${reservationId}).`,
     cancellationText: 'Cancel',
@@ -18,8 +18,8 @@ export function* confirmation(reservationId) {
   });
 
   const { confirm } = yield race({
-    confirm: take(actionCreators.CONFIRM_CONFIRMATION_MODAL),
-    no: take(actionCreators.REJECT_CONFIRMATION_MODAL),
+    confirm: take(actionTypes.CONFIRM_CONFIRMATION_MODAL),
+    no: take(actionTypes.REJECT_CONFIRMATION_MODAL),
   });
 
   return confirm;
@@ -30,7 +30,7 @@ export function* cancelReservation({ reservationId }) {
     const confirm = yield call(confirmation, reservationId);
     if (!confirm) {
       yield put({
-        type: onCancellation(actionCreators.REJECT_CONFIRMATION_MODAL),
+        type: onCancellation(actionTypes.REJECT_CONFIRMATION_MODAL),
       });
       return;
     } else {
@@ -50,12 +50,12 @@ export function* cancelReservation({ reservationId }) {
       else {
         const { reservations } = data?.deleteReservation || [];
         yield put({
-          type: actionCreators.SET_ALERT,
+          type: actionTypes.SET_ALERT,
           alertType: 'success',
           message: 'Reservation cancelled.',
         });
         yield put({
-          type: onSuccessful(actionCreators.DELETE_RESERVATION),
+          type: onSuccessful(actionTypes.DELETE_RESERVATION),
           response: {
             data: reservations,
           },
@@ -65,12 +65,12 @@ export function* cancelReservation({ reservationId }) {
   } catch (ex) {
     const message = `Could not delete reservation.  ${ex}`;
     yield put({
-      type: onFailure(actionCreators.DELETE_RESERVATION),
+      type: onFailure(actionTypes.DELETE_RESERVATION),
       alertType: 'danger',
       message,
     });
     yield put({
-      type: actionCreators.SET_ALERT,
+      type: actionTypes.SET_ALERT,
       alertType: 'danger',
       message,
     });
@@ -78,7 +78,7 @@ export function* cancelReservation({ reservationId }) {
 }
 
 function* saga() {
-  yield takeLatest(actionCreators.DELETE_RESERVATION, cancelReservation);
+  yield takeLatest(actionTypes.DELETE_RESERVATION, cancelReservation);
 }
 
 export default saga;

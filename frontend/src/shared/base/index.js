@@ -1,4 +1,4 @@
-export { actionCreators } from './actionCreators';
+export { actionTypes } from './actionTypes';
 export { connectComponent } from './connectComponent';
 export { createBaseApi, getBaseApi } from './baseApi';
 export { createComponentReducer } from './createComponentReducer';

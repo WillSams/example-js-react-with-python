@@ -1,6 +1,6 @@
 import { call, takeLatest, put } from 'redux-saga/effects';
 
-import { actionCreators, onFailure, onSuccessful } from '@/shared/base';
+import { actionTypes, onFailure, onSuccessful } from '@/shared/base';
 import { fetchQuery, getExistingReservationsQuery } from '@/shared/graphql';
 
 export function* getAllReservations() {
@@ -21,7 +21,7 @@ export function* getAllReservations() {
     else {
       const { reservations } = data?.getAllReservations || [];
       yield put({
-        type: onSuccessful(actionCreators.GET_RESERVATIONS),
+        type: onSuccessful(actionTypes.GET_RESERVATIONS),
         response: {
           data: reservations,
         },
@@ -30,12 +30,12 @@ export function* getAllReservations() {
   } catch (ex) {
     const message = `Could not retrieve reservations.  ${ex}`;
     yield put({
-      type: onFailure(actionCreators.GET_RESERVATIONS),
+      type: onFailure(actionTypes.GET_RESERVATIONS),
       alertType: 'danger',
       message,
     });
     yield put({
-      type: actionCreators.SET_ALERT,
+      type: actionTypes.SET_ALERT,
       alertType: 'danger',
       message,
     });
@@ -43,7 +43,7 @@ export function* getAllReservations() {
 }
 
 function* saga() {
-  yield takeLatest(actionCreators.GET_RESERVATIONS, getAllReservations);
+  yield takeLatest(actionTypes.GET_RESERVATIONS, getAllReservations);
 }
 
 export default saga;

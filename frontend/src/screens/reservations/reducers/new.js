@@ -1,5 +1,5 @@
 import {
-  actionCreators,
+  actionTypes,
   createComponentReducer,
   onSuccessful,
 } from '@/shared/base';
@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const actionHandlers = {
-  [onSuccessful(actionCreators.GET_ROOM_IDS)]: (state, action) => {
+  [onSuccessful(actionTypes.GET_ROOM_IDS)]: (state, action) => {
     const roomIds = action?.response?.data || [];
     return {
       ...state,
@@ -18,7 +18,7 @@ const actionHandlers = {
       loading: false,
     };
   },
-  [onSuccessful(actionCreators.CREATE_RESERVATION)]: (state, action) => {
+  [onSuccessful(actionTypes.CREATE_RESERVATION)]: (state, action) => {
     const reservations = action?.response?.data || [];
     return {
       ...state,
@@ -29,7 +29,7 @@ const actionHandlers = {
 };
 
 const reducer = createComponentReducer(
-  actionCreators.NEW_RESERVATION_COMPONENT,
+  actionTypes.NEW_RESERVATION_COMPONENT,
   initialState,
   actionHandlers,
 );

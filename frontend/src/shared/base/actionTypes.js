@@ -1,4 +1,4 @@
-export const actionCreators = {
+export const actionTypes = {
   // Component actions
   LOAD_COMPONENT: 'shared/LOAD_COMPONENT',
   COMPONENT_NOT_FOUND: 'shared/COMPONENT_NOT_FOUND',

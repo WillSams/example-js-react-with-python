@@ -1,6 +1,6 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 
-import { actionCreators, onFailure, onSuccessful } from '@/shared/base';
+import { actionTypes, onFailure, onSuccessful } from '@/shared/base';
 import { fetchQuery, createReservationMutation } from '@/shared/graphql';
 
 export function* newReservation({ room_id, checkin_date, checkout_date }) {
@@ -17,12 +17,12 @@ export function* newReservation({ room_id, checkin_date, checkout_date }) {
     else {
       const { reservations } = data?.createReservation || [];
       yield put({
-        type: actionCreators.SET_ALERT,
+        type: actionTypes.SET_ALERT,
         alertType: 'success',
         message: 'Reservation created.',
       });
       yield put({
-        type: onSuccessful(actionCreators.CREATE_RESERVATION),
+        type: onSuccessful(actionTypes.CREATE_RESERVATION),
         response: {
           data: reservations,
         },
@@ -31,12 +31,12 @@ export function* newReservation({ room_id, checkin_date, checkout_date }) {
   } catch (ex) {
     const message = `Could not create reservation.  ${ex}`;
     yield put({
-      type: onFailure(actionCreators.CREATE_RESERVATION),
+      type: onFailure(actionTypes.CREATE_RESERVATION),
       alertType: 'danger',
       message,
     });
     yield put({
-      type: actionCreators.SET_ALERT,
+      type: actionTypes.SET_ALERT,
       alertType: 'danger',
       message,
     });
@@ -44,7 +44,7 @@ export function* newReservation({ room_id, checkin_date, checkout_date }) {
 }
 
 export function* saga() {
-  yield takeLatest(actionCreators.CREATE_RESERVATION, newReservation);
+  yield takeLatest(actionTypes.CREATE_RESERVATION, newReservation);
 }
 
 export default saga;
