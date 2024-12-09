@@ -1,6 +1,6 @@
 ariadne==0.22
 asyncpg==0.29.0
-fastapi==0.109.2
+fastapi==0.115.6
 httpx==0.26.0
 pydantic==2.6.1
 python-multipart==0.0.9
