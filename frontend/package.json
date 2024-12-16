@@ -13,7 +13,7 @@
     "now": "ENV=test jest specs/screens/home/sagas/getAll*.spec.js --maxWorkers=2"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^2.0.1",
+    "@reduxjs/toolkit": "^2.5.0",
     "axios": "^1.6.7",
     "axios-mock-adapter": "^1.22.0",
     "bootstrap": "^5.2.0",
