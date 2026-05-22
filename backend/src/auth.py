@@ -2,12 +2,7 @@ from datetime import datetime, timedelta, timezone
 
 from jose import jwt
 
-from settings import (
-    ACCESS_TOKEN_EXPIRE_MINUTES,
-    ALGORITHM,
-    REFRESH_SECRET_KEY,
-    SECRET_KEY,
-)
+from settings import ACCESS_TOKEN_EXPIRE_MINUTES, ALGORITHM, SECRET_KEY
 
 
 def create_token(subject: str, secret_key: str, expires_delta: timedelta) -> str:
@@ -25,10 +20,6 @@ def create_token(subject: str, secret_key: str, expires_delta: timedelta) -> str
 
 def create_access_token(subject: str, expires_delta: timedelta) -> str:
     return create_token(subject, str(SECRET_KEY), expires_delta)
-
-
-def create_refresh_token(subject: str, expires_delta: timedelta) -> str:
-    return create_token(subject, str(REFRESH_SECRET_KEY), expires_delta)
 
 
 def verify_user(username: str, password: str):
