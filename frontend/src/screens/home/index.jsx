@@ -86,7 +86,7 @@ const screen = connectComponent(HomeComponent, {
   load: {
     reservations: () => ({ type: actionTypes.GET_RESERVATIONS }),
   },
-  actionCreators: (dispatch) => ({
+  mapDispatchToProps: (dispatch) => ({
     handleCloseAlert: () => dispatch({ type: actionTypes.CLEAR_ALERT }),
     handleConfirmAction: () =>
       dispatch({ type: actionTypes.CONFIRM_CONFIRMATION_MODAL }),

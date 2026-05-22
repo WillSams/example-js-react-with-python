@@ -13,6 +13,7 @@ export FRONTEND_PORT=3000
 export RESERVATION_PORT=8080
 export RESERVATION_API=http://localhost:${RESERVATION_PORT}/${ENV}
 export VITE_RESERVATION_API=${RESERVATION_API}
+export ALLOWED_ORIGINS=http://localhost:${FRONTEND_PORT}
 
 export PG_CLIENT=postgres
 export PG_USER=postgres
