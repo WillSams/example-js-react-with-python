@@ -36,14 +36,10 @@ async def create_reservation(
     return reservations
 
 
-async def delete_reservation(db, reservation_id: str) -> Dict[str, Any]:
-    reservation = await fetch_reservation(db, reservation_id)
-    if reservation:
-        await db.execute("DELETE FROM reservations WHERE id = $1", reservation_id)
-        return await fetch_all_rows(db, Reservation)
-    else:
-        errors = ["Reservation not found"]
-        return {"success": False, "errors": errors, "reservations": None}
+async def delete_reservation(db, reservation_id: int) -> Dict[str, Any]:
+    await fetch_reservation(db, reservation_id)
+    await db.execute("DELETE FROM reservations WHERE id = $1", reservation_id)
+    return await fetch_all_rows(db, Reservation)
 
 
 async def is_room_available(
@@ -116,7 +112,7 @@ async def fetch_room(db, room_id: str) -> Room:
         raise ValueError(f"Room with id {room_id} not found")
 
 
-async def fetch_reservation(db, reservation_id: id):
+async def fetch_reservation(db, reservation_id: int):
     result = await fetch_by_id(db, Reservation, id=reservation_id)
     if result["success"]:
         return result
