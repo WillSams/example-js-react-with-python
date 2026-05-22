@@ -32,7 +32,6 @@ const handleResponse = (response, store) => {
 
 const handleResponseError = (error, store) => {
   const { message, name } = error;
-  store.dispatch({ type: actionTypes.API_REQUEST_DONE });
   store.dispatch({
     type: actionTypes.API_REQUEST_ERROR,
     error: { message, name },
@@ -71,8 +70,7 @@ export const createBaseApi = async (url, store) => {
 
     return instance;
   } catch (error) {
-    //console.error('Error fetching token:', error);
-    return error;
+    throw new Error(`Failed to initialize API: ${error.message}`);
   }
 };
 
