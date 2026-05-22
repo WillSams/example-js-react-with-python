@@ -2,12 +2,12 @@
 
 **JavaScript, Vite, Reactjs, Redux Toolkit, Redux Sagas, Python, FastAPI, GraphQL, AsyncPG, Postgres**
 
-[![Application Unit Tests](https://github.com/WillSams/example-js-react-with-python/actions/workflows/pr-validate.yml/badge.svg)](https://github.com/WillSams/eexample-js-react-with-python/actions/workflows/pr-validate.yml)
+[![Application Unit Tests](https://github.com/WillSams/example-js-react-with-python/actions/workflows/pr-validate.yml/badge.svg)](https://github.com/WillSams/example-js-react-with-python/actions/workflows/pr-validate.yml)
 
 This example contains a frontend and backend:
 
 - The frontend is a [React](https://react.dev) application using [Bootstrap4](https://getbootstrap.com/docs/4.6/getting-started/introduction/) for view designs.
-- The backend is a [GraphQL API](https://graphql.org) providing the ability to create, delete, and list reservatios plus available rooms for a given date range.
+- The backend is a [GraphQL API](https://graphql.org) providing the ability to create, delete, and list reservations plus available rooms for a given date range.
 
 React [Typescript](https://github.com/WillSams/example-ts-react-with-python) and [Express MVC](https://github.com/WillSams/example-mvc-expressjs-with-python) versions of this same idea are available.
 
@@ -17,7 +17,7 @@ An [abandoned](https://github.com/WillSams/example-mvc-expressjs-with-python/tre
 
 - When a room is reserved, it cannot be reserved by another guest on overlapping dates.
 - Whenever there are multiple available rooms for a request, the room with the lower final price is assigned.
-- Whenever a request is made for a single room, a double bed room may be assigned (if no single is available?).
+- Whenever a request is made for a single room, a double bed room may be assigned if no single is available.
 - Smokers are not placed in non-smoking rooms.
 - Non-smokers are not placed in allowed smoking rooms.
 - Final price for reservations are determined by daily price * num of days requested, plus the cleaning fee.
@@ -77,11 +77,12 @@ The below are optional but highly recommended:
 
 - [nvm](https://github.com/nvm-sh/nvm) - Used to manage NodeJS versions.
 - [Direnv](https://direnv.net/) - Used to manage environment variables.
-- Install [direnv](https://direnv.net) for persisting environment variables needed for development.
 
 ## Getting Started
 
-First, we'll need to set up our environment variables.  You can do this by either any of the methods mentioned in [/tools/ENV.md](./tools/ENV.md) but I recommend using [Direnv](https://direnv.net/).
+First, we'll need to set up our environment variables. You can do this by any of the methods mentioned in [/tools/ENV.md](./tools/ENV.md) but I recommend using [Direnv](https://direnv.net/).
+
+Key backend variables include `SECRET_KEY`, `REFRESH_SECRET_KEY`, `PG_URL`, and `ALLOWED_ORIGINS` (a comma-separated list of allowed frontend origins, e.g. `http://localhost:3000`).
 
 ### Install Python Packages
 
@@ -99,11 +100,11 @@ pip install -r requirements.txt
 Execute the following within your terminal:
 
 ```bash
-nvm use                  # To eliminate any issues, install/use the version listed in .nvmrc. 
-npm i                    # install the packages needed for project
-cd ../frontend && npm i  # install the packages needed for the frontend
-cd ../db && npm i        # install the packages needed for database migrations
-cd ..                    # navigate back to the root of the repostiory
+nvm use                 # To eliminate any issues, install/use the version listed in .nvmrc.
+npm i                   # install the packages needed for project
+cd frontend && npm i    # install the packages needed for the frontend
+cd ../db && npm i       # install the packages needed for database migrations
+cd ..                   # navigate back to the root of the repository
 ```
 
 ### Create the database
@@ -112,10 +113,11 @@ Finally, let's create and seed the databases and our Reservations and Rooms tabl
 
 ```bash
 # Create the databases and seed them
-NODE_ENV=development | npm run refresh && npm run seed
+cd db
+NODE_ENV=development npm run refresh && NODE_ENV=development npm run seed
 ```
 
-During development, you can just execute `npm run dev:db-baseline` to refresh the database back to the original seed data.
+During development, you can just execute `npm run dev:db-baseline` in the root of the project to refresh the database back to the original seed data.
 
 ## Development
 
@@ -126,17 +128,17 @@ docker-compose up -d  # runs the database in the background
 npm run dev
 ```
 
-Also, you just execute the backend via `npm run dev:backend`.  to verify the backend is working:
+Also, you can just execute the backend via `npm run dev:backend`. To verify the backend is working:
 
 ```bash
 curl http://localhost:$RESERVATION_PORT/$ENV/about
 ```
 
-You can also acces the Ariadne GraphiQL (interactive test playground) instance at [http://localhost:$RESERVATION_PORT/$ENV/graphql](http://localhost:$PLAYGROUND_PORT/$ENV/graphql).  
+You can also access the Ariadne GraphiQL (interactive test playground) instance at [http://localhost:$RESERVATION_PORT/$ENV/graphql](http://localhost:$RESERVATION_PORT/$ENV/graphql).
 
 ## Testing
 
-The backend uses [Pytest](https://docs.pytest.org) and the frontend uses [Jest](https://jestjs.io/).  To run these tests, simply execute `npm run test:backend` or `npm run test:frontend', respectively.
+The backend uses [Pytest](https://docs.pytest.org) and the frontend uses [Jest](https://jestjs.io/). To run these tests, simply execute `npm run test:backend` or `npm run test:frontend`, respectively.
 
 ## Containerization
 
