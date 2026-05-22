@@ -23,5 +23,5 @@ _missing = [
     ]
     if not val
 ]
-if _missing:
+if _missing and ENV != "test":
     raise RuntimeError(f"Missing required environment variables: {', '.join(_missing)}")
