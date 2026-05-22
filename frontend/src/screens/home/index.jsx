@@ -20,8 +20,14 @@ const HomeComponent = ({
   const confirmation = {
     isOpen: useSelector((state) => state?.shared?.confirmationModalIsOpen),
     message: useSelector((state) => state?.shared?.confirmationModalMessage),
-    canecllationText: useSelector(
+    cancellationText: useSelector(
       (state) => state?.shared?.confirmationModalCancellationText,
+    ),
+    confirmationText: useSelector(
+      (state) => state?.shared?.confirmationModalText,
+    ),
+    confirmButtonStyle: useSelector(
+      (state) => state?.shared?.confirmationModalButtonStyle,
     ),
     title: useSelector((state) => state?.shared?.confirmationModalTitle),
   };
@@ -73,6 +79,9 @@ const HomeComponent = ({
         isOpen={confirmation.isOpen}
         title={confirmation.title}
         message={confirmation.message}
+        confirmationText={confirmation.confirmationText}
+        cancellationText={confirmation.cancellationText}
+        confirmButtonStyle={confirmation.confirmButtonStyle}
         handleConfirm={handleConfirmAction}
         handleReject={handleRejectAction}
       />
