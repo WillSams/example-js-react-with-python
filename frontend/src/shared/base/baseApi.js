@@ -39,11 +39,11 @@ const handleResponseError = (error, store) => {
   return Promise.reject(error);
 };
 
-const getToken = async (url) => {
+const getToken = async (url, credentials = {}) => {
   const formData = new FormData();
   formData.append('grant_type', 'password');
-  formData.append('username', 'example-user');
-  formData.append('password', 'example-user');
+  formData.append('username', credentials.username ?? 'example-user');
+  formData.append('password', credentials.password ?? 'example-user');
 
   const response = await axios.post(`${url}/token`, formData, {
     headers: {
@@ -54,9 +54,9 @@ const getToken = async (url) => {
   return response?.data?.access_token || '';
 };
 
-export const createBaseApi = async (url, store) => {
+export const createBaseApi = async (url, store, credentials = {}) => {
   try {
-    const tokenValue = await getToken(url);
+    const tokenValue = await getToken(url, credentials);
     instance = createInstance(url, tokenValue);
 
     instance.interceptors.request.use(
