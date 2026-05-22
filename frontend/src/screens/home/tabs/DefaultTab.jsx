@@ -16,7 +16,12 @@ const DefaultTab = ({
   return (
     <div data-name="reservations-tab">
       <div className="col-lg-12 bg-dark mx-auto">
-        <h3>Reservations</h3>
+        <div className="d-flex justify-content-between align-items-center">
+          <h3>Reservations</h3>
+          <Link to="/reservations/new">
+            <Button variant="warning">Book</Button>
+          </Link>
+        </div>
         <div className="container flex-column">
           {loading && reservations.length === 0 && <Loading />}
           {!loading && reservations.length === 0 && (
@@ -31,11 +36,7 @@ const DefaultTab = ({
                   <th scope="col">Stay End Date</th>
                   <th scope="col">Total Charge</th>
                   <th></th>
-                  <th scope="col">
-                    <Link to="/reservations/new">
-                      <Button variant="warning">Book</Button>
-                    </Link>
-                  </th>
+                  <th></th>
                   <th></th>
                 </tr>
               </thead>

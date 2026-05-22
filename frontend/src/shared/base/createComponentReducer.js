@@ -3,20 +3,21 @@ export const createComponentReducer = (
   initialState,
   actionHandlers,
 ) => {
-  actionHandlers[`LOAD_${componentName}`] = (state, action) => ({
-    ...state,
-    loading: true,
-  });
-
-  actionHandlers[`LOAD_${componentName}_SUCCESS`] = (state, action) => ({
-    ...state,
-    loading: false,
-  });
-
-  actionHandlers[`UNLOAD_${componentName}`] = (state, action) => ({
-    ...initialState,
-    loading: true,
-  });
+  const handlers = {
+    ...actionHandlers,
+    [`LOAD_${componentName}`]: (state, action) => ({
+      ...state,
+      loading: true,
+    }),
+    [`LOAD_${componentName}_SUCCESS`]: (state, action) => ({
+      ...state,
+      loading: false,
+    }),
+    [`UNLOAD_${componentName}`]: (state, action) => ({
+      ...initialState,
+      loading: true,
+    }),
+  };
 
   return (
     state = {
@@ -25,7 +26,7 @@ export const createComponentReducer = (
     },
     action,
   ) => {
-    const effect = actionHandlers[action.type];
+    const effect = handlers[action.type];
 
     if (effect) return effect(state, action);
     else return state;
