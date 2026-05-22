@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 from jose import jwt
 
@@ -12,9 +12,11 @@ from settings import (
 
 def create_token(subject: str, secret_key: str, expires_delta: timedelta) -> str:
     if expires_delta is not None:
-        expires_at = datetime.utcnow() + expires_delta
+        expires_at = datetime.now(timezone.utc) + expires_delta
     else:
-        expires_at = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+        expires_at = datetime.now(timezone.utc) + timedelta(
+            minutes=ACCESS_TOKEN_EXPIRE_MINUTES
+        )
 
     to_encode = {"exp": expires_at, "sub": subject}
     encoded_jwt = jwt.encode(to_encode, secret_key, ALGORITHM)
