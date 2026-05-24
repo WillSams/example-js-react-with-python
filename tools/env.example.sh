@@ -9,10 +9,13 @@ export REFRESH_SECRET_KEY=s3cr3t-k3y
 export COOKIE_EXPIRATION=86400
 
 export FRONTEND_PORT=3000
+export VITE_API_USERNAME=example-user
+export VITE_API_PASSWORD=example-user
 
 export RESERVATION_PORT=8080
 export RESERVATION_API=http://localhost:${RESERVATION_PORT}/${ENV}
 export VITE_RESERVATION_API=${RESERVATION_API}
+export ALLOWED_ORIGINS=http://localhost:${FRONTEND_PORT}
 
 export PG_CLIENT=postgres
 export PG_USER=postgres
