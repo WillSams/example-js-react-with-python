@@ -11,8 +11,8 @@ import { fetchQuery, deleteReservationMutation } from '@/shared/graphql';
 export function* confirmation(reservationId) {
   yield put({
     type: actionTypes.OPEN_CONFIRMATION_MODAL,
-    title: 'Are you sure you?',
-    message: `You will not be able to  reverse cancellation (id: ${reservationId}).`,
+    title: 'Are you sure?',
+    message: `You will not be able to reverse cancellation (id: ${reservationId}).`,
     cancellationText: 'Cancel',
     buttonStyle: 'danger',
   });
