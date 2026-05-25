@@ -5,7 +5,7 @@ flake8==6.1.0
 httpx==0.26.0
 isort==5.13.2
 psycopg2-binary==2.9.9
-pydantic==2.6.1
+pydantic==2.10.6
 pytest==7.4.3
 pytest-asyncio==0.23.3
 pytest-cov==4.1.0
