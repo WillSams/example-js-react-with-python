@@ -6,7 +6,7 @@ import { useLoadComponent } from '@/shared/hooks';
 /*
  type Config = {
   state: (state: any, ownProps: any) => object;
-  actionCreators?: (dispatch: Redux.Dispatch) => object;
+  mapDispatchToProps?: (dispatch: Redux.Dispatch) => object;
   componentName: string;
   load?: object;
 };
@@ -35,8 +35,8 @@ export const connectComponent = (WrappedComponent, config) => {
     };
   };
   const mapDispatchToProps = (dispatch) => {
-    const dispatchFromConfig = config.actionCreators
-      ? config.actionCreators(dispatch)
+    const dispatchFromConfig = config.mapDispatchToProps
+      ? config.mapDispatchToProps(dispatch)
       : {};
 
     dispatchFromConfig.getDispatch = () => dispatch;
