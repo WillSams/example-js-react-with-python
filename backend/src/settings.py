@@ -12,8 +12,11 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60
 REFRESH_TOKEN_EXPIRE_MINUTES = 60 * 24  # 1 day
 
-SECRET_KEY = getenv("SECRET_KEY")
-REFRESH_SECRET_KEY = getenv("REFRESH_SECRET_KEY")
+_test_mode = ENV == "test"
+SECRET_KEY = getenv("SECRET_KEY") or ("test-secret-key" if _test_mode else None)
+REFRESH_SECRET_KEY = getenv("REFRESH_SECRET_KEY") or (
+    "test-refresh-secret-key" if _test_mode else None
+)
 
 _missing = [
     name
@@ -23,5 +26,5 @@ _missing = [
     ]
     if not val
 ]
-if _missing and ENV != "test":
+if _missing and not _test_mode:
     raise RuntimeError(f"Missing required environment variables: {', '.join(_missing)}")
