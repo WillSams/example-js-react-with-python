@@ -71,11 +71,13 @@ Navigate to [http://localhost:$RESERVATION_PORT/docs](http://localhost:$RESERVAT
 To run the service, you will need to install the following tools.
 
 - [NodeJS](https://nodejs.org/en/)
+- [Python 3.10](https://www.python.org/downloads/) (or via [pyenv](https://github.com/pyenv/pyenv))
 - [Docker](https://www.docker.com/)
 
 The below are optional but highly recommended:
 
 - [nvm](https://github.com/nvm-sh/nvm) - Used to manage NodeJS versions.
+- [pyenv](https://github.com/pyenv/pyenv) - Used to manage Python versions.
 - [Direnv](https://direnv.net/) - Used to manage environment variables.
 
 ## Getting Started
@@ -89,9 +91,11 @@ Key backend variables include `SECRET_KEY`, `REFRESH_SECRET_KEY`, `PG_URL`, and 
 Execute the following in your terminal:
 
 ```bash
+pyenv install 3.10.20       # if not already installed
+pyenv local 3.10.20
 python -m venv venv
-source venv/bin/activate  # for Windows, source venv/Scripts/activate
-python -m pip install --upgrade pip 
+source venv/bin/activate    # for Windows, source venv/Scripts/activate
+python -m pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
